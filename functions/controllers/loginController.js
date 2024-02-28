@@ -1,5 +1,6 @@
 const userModel = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const jwtHelper = require("../utils/jwtHelper");
 
 module.exports = async (req, res) => {
   const { emailOrUserName, password } = req.body;
@@ -33,8 +34,12 @@ module.exports = async (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    // Respond with success message or user data as needed
-    return res.status(200).json({ message: "Login successful", user });
+    // Generate JWT token
+    const token = jwtHelper.generateToken({
+      email: user.email,
+    });
+    // Respond with success message and token
+    return res.status(200).json({ message: "Login successful", token });
   } catch (error) {
     console.error("Error during login:", error);
     return res.status(500).json({ error: "Internal server error" });

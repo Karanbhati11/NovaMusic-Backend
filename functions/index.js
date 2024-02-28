@@ -11,21 +11,22 @@ const playerRoute = require("./routes/playerRoute");
 const middlewares = require("./middleware/middleware");
 const app = express();
 
-// middlewares
+// Middlewares
 app.use(middlewares.corsOptions);
 app.use(middlewares.bodyParse);
 app.use(middlewares.expressJson);
 
-// connection
+// Connection
 connection();
 
-// routes
-app.use("/", rootRoute);
-app.use("/login", loginRoute);
-app.use("/signup", signUpRoute);
+// Routes
+app.use("/", rootRoute); // No authentication needed
+app.use("/login", loginRoute); // No authentication needed for login
+app.use("/signup", signUpRoute); // No authentication needed for signup
+app.use("/player", playerRoute);
+app.use(middlewares.authenticateJWT); // Apply authentication to subsequent routes
 app.use("/save", saveRoute);
 app.use("/retrieve", retrieveRoute);
 app.use("/playlist", playlistRoute);
-app.use("/player", playerRoute);
 
 module.exports.handler = serverless(app);
