@@ -9,6 +9,7 @@ const authenticateJWT = (req, res, next) => {
 
   try {
     // Verify the JWT token and extract user data
+
     const user = jwtHelper.verifyToken(token);
 
     console.log(user);

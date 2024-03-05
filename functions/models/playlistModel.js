@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const playlistSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+  },
   playlists: {
     type: Object,
     required: true,

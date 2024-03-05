@@ -39,7 +39,9 @@ module.exports = async (req, res) => {
       email: user.email,
     });
     // Respond with success message and token
-    return res.status(200).json({ message: "Login successful", token });
+    return res
+      .status(200)
+      .json({ message: "Login successful", token, email: user.email });
   } catch (error) {
     console.error("Error during login:", error);
     return res.status(500).json({ error: "Internal server error" });

@@ -7,9 +7,9 @@ const generateToken = (payload) => {
 };
 const verifyToken = (token) => {
   try {
-    const decodedToken = jwt.verify(token, secret);
-    console.log(decodedToken);
-    return decodedToken;
+    const Ctoken = token.split(" ");
+    const verifyToken = jwt.verify(Ctoken[1], secret);
+    return verifyToken;
   } catch (error) {
     console.error("Token verification failed:", error);
     throw new Error("Invalid token");
