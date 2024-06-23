@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 module.exports = () => {
   const ConnectionString =
-    "mongodb+srv://deadlygmerx:FZbyMob9szjf8Zxz@cluster0.jz4ugew.mongodb.net/";
+    "mongodb+srv://deadlygmerx:FZbyMob9szjf8Zxz@cluster0.jz4ugew.mongodb.net/novaMusic";
 
   try {
     mongoose.connect(ConnectionString).then((response) => {
